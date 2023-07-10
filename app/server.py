@@ -8,6 +8,7 @@ from fastapi.openapi.utils import get_openapi
 from app.routers import main
 
 from dotenv import load_dotenv
+from app.db.db import database
 
 load_dotenv()
 
@@ -64,6 +65,16 @@ def custom_openapi():
 
 app = create_app()
 app.openapi = custom_openapi
+
+@app.on_event("startup")
+async def startup():
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def shutdown():
+    await database.disconnect()
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
