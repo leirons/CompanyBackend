@@ -45,7 +45,6 @@ class UserCreate(UserBase, UserCreateValidators):
     username: str = "string355"
 
 
-
 class User(UserBase):
     id: int
     username: str
@@ -58,8 +57,10 @@ class User(UserBase):
 class Users(BaseModel):
     email: str
 
+
 class UserList(BaseModel):
     users: list[dict]
+
 
 class UserToken(BaseModel):
     token: str
@@ -77,8 +78,3 @@ class UserPatch(UserCreateValidators):
     username: str = "string355"
     password: str = "string355"
 
-class UserData(BaseModel):
-    first_name: str
-    last_name: str
-    email: str
-    phone: str
