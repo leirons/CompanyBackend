@@ -118,3 +118,15 @@ async def patch_user(
     if not operation:
         raise HTTPException(detail=res.message, status_code=res.error_code)
     return res
+
+@router.delete(
+    "/user/{username}",
+    tags=["user"],
+    responses={404: {"model": Message}},
+    status_code=status.HTTP_200_OK,
+)
+async def delete_user(username: str, request: Request, db: Session = Depends(get_db)):
+    operation, res = await logic.delete_user(db, username=username)
+    if not operation:
+        raise HTTPException(detail=res.message, status_code=res.error_code)
+    return res
