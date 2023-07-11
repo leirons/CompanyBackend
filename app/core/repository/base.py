@@ -2,7 +2,7 @@ from typing import Generic, Optional, Type, TypeVar
 
 from sqlalchemy import delete, select, update
 
-from core.db.sessions import Base
+from app.db.sessions import Base
 
 ModelType = TypeVar("ModelType", bound=Base)
 
