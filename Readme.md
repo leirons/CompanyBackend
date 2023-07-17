@@ -7,9 +7,8 @@
 
 ### Docker
 ```
-docker-compose up --build
-docker container ls
-docker exec (name of web service) alembic upgrade head  
+docker build -t fastapi
+docker run -d --name your name of container -p 8000:8000 fastapi
 ```
 
 
