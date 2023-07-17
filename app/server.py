@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 
-from app.routers import main
+from app.routers import main, users
 
 from dotenv import load_dotenv
 
@@ -23,6 +23,8 @@ def init_cors(app: FastAPI) -> None:
 
 def init_routers(app: FastAPI) -> None:
     app.include_router(main.router, prefix="/api/v1")
+    app.include_router(users.router, prefix="/api/v1")
+
     return
 
 def init_middleware(app: FastAPI) -> None:
@@ -64,6 +66,8 @@ def custom_openapi():
 
 app = create_app()
 app.openapi = custom_openapi
+
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT"))
